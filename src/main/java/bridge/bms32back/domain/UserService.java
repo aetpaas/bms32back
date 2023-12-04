@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    public void findActiveUserBy(String username, String password) {
+
+
+    public void findActiveUserBy(String username, String password, String status) {
+
     }
 }

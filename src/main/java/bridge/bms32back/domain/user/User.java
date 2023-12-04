@@ -1,6 +1,6 @@
-package bridge.bms32back.domain;
+package bridge.bms32back.domain.user;
 
-import bridge.bms32back.domain.RoleEntity;
+import bridge.bms32back.domain.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "\"user\"", schema = "project")
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class UserEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
-    private RoleEntity role;
+    private Role role;
 
     @Size(max = 255)
     @NotNull

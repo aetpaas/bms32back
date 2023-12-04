@@ -10,7 +10,7 @@ public class LoginService {
     private UserService userService;
 
     public void login(String username, String password) {
-        userService.findActiveUserBy(username, password)
+        userService.findActiveUserBy(username, password);
 
     }
 }
