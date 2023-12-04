@@ -12,7 +12,7 @@ public class LoginController {
     private LoginService loginService;
 
     @GetMapping("/login")
-    public void login(String username, String password) {
-        loginService.login(username, password);
+    public void login(String username, String password, String status) {
+        loginService.login(username, password, status);
     }
 }
