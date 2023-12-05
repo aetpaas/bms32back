@@ -12,8 +12,8 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
-    public User findActiveUserBy(String username, String password, String status) {
-        User user = userRepository.findUserBy(username, password, status);
+    public User findActiveUserBy(String username, String password) {
+        User user = userRepository.findUserBy(username, password, "A");
         return user;
 
 
