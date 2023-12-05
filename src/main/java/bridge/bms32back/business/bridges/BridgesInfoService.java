@@ -9,5 +9,7 @@ public class BridgesInfoService {
     @Resource
     private BridgeInfoService bridgeInfoService;
 
-    public void getAllBridgsInfo();
+    public void getAllBridgsInfo() {
+        bridgeInfoService.findAllBridges
+    }
 }

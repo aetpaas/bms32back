@@ -12,6 +12,6 @@ public class BridgesInfoController {
 
     @GetMapping("/allbridges")
     public void getBridgesInfo() {
-        bridgesInfoService.getBridgesInfo
+        bridgesInfoService.findAllBridgesInfo
     }
 }
