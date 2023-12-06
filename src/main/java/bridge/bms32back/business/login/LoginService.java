@@ -13,6 +13,7 @@ public class LoginService {
     @Resource
     private UserMapper userMapper;
 
+
     public LoginResponseDto login(String username, String password) {
         User user = userService.findActiveUserBy(username, password);
         LoginResponseDto loginResponse = userMapper.toLoginResponse(user);
