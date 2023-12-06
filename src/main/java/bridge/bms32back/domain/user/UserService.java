@@ -1,10 +1,12 @@
 package bridge.bms32back.domain.user;
 
 
-import bridge.bms32back.domain.user.User;
-import bridge.bms32back.domain.user.UserRepository;
+import bridge.bms32back.business.Status;
+import bridge.bms32back.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -13,8 +15,8 @@ public class UserService {
     private UserRepository userRepository;
 
     public User findActiveUserBy(String username, String password) {
-        User user = userRepository.findUserBy(username, password, "A");
-        return user;
+        Optional<User> optionalUser = userRepository.findUserBy(username, password, Status.ACTIVE);
+        return ValidationService.getValidUser(optionalUser);
 
 
     }

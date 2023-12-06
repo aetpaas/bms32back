@@ -1,5 +1,6 @@
 package bridge.bms32back.business.login;
 
+import bridge.bms32back.business.loginDTO.LoginResponseDto;
 import bridge.bms32back.domain.user.User;
 import bridge.bms32back.domain.user.UserMapper;
 import bridge.bms32back.domain.user.UserService;
@@ -15,8 +16,7 @@ public class LoginService {
 
     public LoginResponseDto login(String username, String password) {
         User user = userService.findActiveUserBy(username, password);
-        LoginResponseDto loginResponse = userMapper.toLoginResponse(user);
-        return loginResponse;
+        return userMapper.toLoginResponse(user);
 
     }
 }

@@ -1,6 +1,6 @@
 package bridge.bms32back.domain.user;
 
-import bridge.bms32back.business.login.LoginResponseDto;
+import bridge.bms32back.business.loginDTO.LoginResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

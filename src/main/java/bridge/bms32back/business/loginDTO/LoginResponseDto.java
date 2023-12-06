@@ -1,9 +1,7 @@
-package bridge.bms32back.business.login;
+package bridge.bms32back.business.loginDTO;
 
 import bridge.bms32back.domain.user.User;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
