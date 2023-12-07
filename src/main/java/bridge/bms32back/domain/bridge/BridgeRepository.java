@@ -22,7 +22,7 @@ public interface BridgeRepository extends JpaRepository<Bridge, Integer> {
             and (b.length between :lengthStart and :lengthEnd)
             and b.width between :widthStart and :widthEnd
             and b.conditionIndex >= :conditionIndex""")
-    List<Bridge> findBridgesBy(String name, Integer number, Integer typeId, Integer countyId, Integer materialId, Integer lengthStart, Integer lengthEnd, Integer widthStart, BigDecimal widthEnd, Integer conditionIndex);
+    List<Bridge> findBridgesBy(String name, Integer number, Integer typeId, Integer countyId, Integer materialId, Integer lengthStart, Integer lengthEnd, Integer widthStart, Integer widthEnd, Integer conditionIndex);
 
 
 }

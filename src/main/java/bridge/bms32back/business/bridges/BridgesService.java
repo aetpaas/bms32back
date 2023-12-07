@@ -1,5 +1,6 @@
 package bridge.bms32back.business.bridges;
 
+import bridge.bms32back.business.bridges.dto.BridgeBasicInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import bridge.bms32back.domain.bridge.Bridge;
@@ -25,7 +26,10 @@ public class BridgesService {
 
     }
 
-    public void findBridgesBy(BridgeSearchDto bridgeSearchDto) {
-        bridgeService.findBridgesBy(bridgeSearchDto);
+    public List<BridgeBasicInfoDto> findBridgesBy(BridgeSearchDto bridgeSearchDto) {
+        List<Bridge> bridgesBy = bridgeService.findBridgesBy(bridgeSearchDto);
+        List<BridgeBasicInfoDto> bridgeBasicInfoDtos = bridgeMapper.toBridgeBasicInfoDtos(bridgesBy);
+        return bridgeBasicInfoDtos;
 
     }
+}

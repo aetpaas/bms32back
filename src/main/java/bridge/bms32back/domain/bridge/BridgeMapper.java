@@ -1,5 +1,6 @@
 package bridge.bms32back.domain.bridge;
 
+import bridge.bms32back.business.bridges.dto.BridgeBasicInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import org.mapstruct.*;
@@ -22,5 +23,11 @@ public interface BridgeMapper {
     List<BridgeDto> toBridgeDtos(List<Bridge> bridges);
 
 
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "bridgeName")
+    @Mapping(source = "location.latitude", target = "locationLatitude")
+    @Mapping(source = "location.longitude", target = "locationLongitude")
+    BridgeBasicInfoDto toBridgeBasicInfoDto(Bridge bridgeBy);
 
+    List<BridgeBasicInfoDto> toBridgeBasicInfoDtos(List<Bridge> bridgesBy);
 }

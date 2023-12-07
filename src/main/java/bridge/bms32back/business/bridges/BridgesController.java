@@ -26,8 +26,10 @@ public class BridgesController {
 
 
     @PostMapping("/bridges/criteria")
-    public void findBridgesBy(@RequestBody BridgeSearchDto bridgeSearchDto) {
-        bridgesService.findBridgesBy(bridgeSearchDto);
-        return null;
+    public List<BridgeBasicInfoDto> findBridgesBy(@RequestBody BridgeSearchDto bridgeSearchDto) {
+        List<BridgeBasicInfoDto> bridgesBy = bridgesService.findBridgesBy(bridgeSearchDto);
+        return bridgesBy;
     }
+
+
 }

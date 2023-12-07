@@ -20,7 +20,7 @@ public class BridgeBasicInfoDto implements Serializable {
     private Integer id;
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String bridgeName;
     private BigDecimal locationLatitude;
     private BigDecimal locationLongitude;
 }
