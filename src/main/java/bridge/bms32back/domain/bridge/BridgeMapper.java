@@ -1,6 +1,7 @@
 package bridge.bms32back.domain.bridge;
 
 import bridge.bms32back.business.bridges.dto.BridgeDto;
+import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public interface BridgeMapper {
     @Mapping(source = "location.county.name", target = "locationCounty")
     @Mapping(source = "material.name", target = "bridgeMaterial")
     BridgeDto toBridgeDto(Bridge bridge);
-
     List<BridgeDto> toBridgeDtos(List<Bridge> bridges);
+
+
 
 }

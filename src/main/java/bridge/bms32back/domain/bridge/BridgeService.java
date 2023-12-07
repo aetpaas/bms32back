@@ -1,5 +1,6 @@
 package bridge.bms32back.domain.bridge;
 
+import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,7 @@ public class BridgeService {
         return bridges;
     }
 
+    public void findBridgesBy(BridgeSearchDto bridgeSearchDto) {
+        bridgeRepository.findBridgesBy(bridgeSearchDto.getBridgeName(),bridgeSearchDto.getBridgeTypeId(),);
 
-}
+    }

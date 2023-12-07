@@ -1,6 +1,7 @@
 package bridge.bms32back.business.bridges;
 
 import bridge.bms32back.business.bridges.dto.BridgeDto;
+import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import bridge.bms32back.domain.bridge.Bridge;
 import bridge.bms32back.domain.bridge.BridgeMapper;
 import bridge.bms32back.domain.bridge.BridgeService;
@@ -23,4 +24,8 @@ public class BridgesService {
         return bridgeDtos;
 
     }
-}
+
+    public void findBridgesBy(BridgeSearchDto bridgeSearchDto) {
+        bridgeService.findBridgesBy(bridgeSearchDto);
+
+    }
