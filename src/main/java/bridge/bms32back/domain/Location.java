@@ -1,6 +1,6 @@
 package bridge.bms32back.domain;
 
-import bridge.bms32back.domain.County;
+import bridge.bms32back.domain.county.County;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
