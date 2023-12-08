@@ -1,7 +1,7 @@
 package bridge.bms32back.business.bridges;
 
-import bridge.bms32back.business.bridges.dto.BridgeCoordinatesAndNameDto;
-import bridge.bms32back.business.bridges.dto.BridgeDto;
+import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
+import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
@@ -19,18 +19,26 @@ public class BridgesController {
     private BridgesService bridgesService;
 
 
-    @GetMapping("/bridges/all")
+    @GetMapping("/bridges/all/overview")
     @Operation(summary = "Tagastab kõikide sildade info Kõik sillad vaatel")
-    public List<BridgeDto> findAllBridges() {
-        List<BridgeDto> bridges = bridgesService.findAllBridges();
-        return bridges;
+    public List<BridgeOverviewDto> findAllBridgesOverview() {
+        List<BridgeOverviewDto> bridgesOverview = bridgesService.findAllBridgesOverview();
+        return bridgesOverview;
     }
 
 
     @PostMapping("/bridges/criteria")
-    @Operation(summary = "Tagastab andmebaasist sillad, mis vastavad filtris sisestatud andmetele")
-    public List<BridgeCoordinatesAndNameDto> findBridgesBy(@RequestBody BridgeSearchDto bridgeSearchDto) {
-        List<BridgeCoordinatesAndNameDto> filteredBridges = bridgesService.findBridgesBy(bridgeSearchDto);
+    @Operation(summary = "Tagastab andmebaasist kõikide sildade asukoha info")
+    public List<BridgeLocationInfoDto> findAllBridgeLocationInfos() {
+        List<BridgeLocationInfoDto> filteredBridges = bridgesService.findAllBridgeLocationInfos();
+        return filteredBridges;
+    }
+
+
+    @PostMapping("/bridges/criteria")
+    @Operation(summary = "Tagastab andmebaasist sildade asukoha info, mis vastavad filtris sisestatud andmetele")
+    public List<BridgeLocationInfoDto> findBridgeLocationInfosBy(@RequestBody BridgeSearchDto bridgeSearchDto) {
+        List<BridgeLocationInfoDto> filteredBridges = bridgesService.findBridgeLocationInfosBy(bridgeSearchDto);
         return filteredBridges;
     }
 

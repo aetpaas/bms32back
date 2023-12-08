@@ -14,5 +14,6 @@ public class BridgeSearchDto {
     private Integer bridgeLengthEnd;
     private Integer bridgeWidthStart;
     private Integer bridgeWidthEnd;
-    private Integer conditionIndex;
+    private Integer conditionIndexStart;
+    private Integer conditionIndexEnd;
 }

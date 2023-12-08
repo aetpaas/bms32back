@@ -16,20 +16,11 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BridgeDto implements Serializable {
+public class BridgeLocationInfoDto implements Serializable {
     private Integer bridgeId;
-    @NotNull
-    private Integer bridgeNumber;
     @NotNull
     @Size(max = 255)
     private String bridgeName;
-    @NotNull
-    private BigDecimal bridgeLength;
-    @NotNull
-    private BigDecimal bridgeWidth;
-    private String bridgeType;
-    @NotNull
-    private Integer conditionIndex;
-    private String locationCounty;
-    private String bridgeMaterial;
+    private BigDecimal locationLatitude;
+    private BigDecimal locationLongitude;
 }

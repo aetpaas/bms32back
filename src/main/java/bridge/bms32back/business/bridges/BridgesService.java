@@ -1,7 +1,7 @@
 package bridge.bms32back.business.bridges;
 
-import bridge.bms32back.business.bridges.dto.BridgeMapBasicInfo;
-import bridge.bms32back.business.bridges.dto.BridgeDto;
+import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
+import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import bridge.bms32back.domain.bridge.Bridge;
 import bridge.bms32back.domain.bridge.BridgeMapper;
@@ -19,17 +19,32 @@ public class BridgesService {
     @Resource
     private BridgeMapper bridgeMapper;
 
-    public List<BridgeDto> findAllBridges() {
+    public List<BridgeOverviewDto> findAllBridgesOverview() {
         List<Bridge> bridges = bridgeService.findAllBridges();
-        List<BridgeDto> bridgeDtos = bridgeMapper.toBridgeDtos(bridges);
-        return bridgeDtos;
+        List<BridgeOverviewDto> bridgeOverviewDtos = bridgeMapper.toBridgeOverviewDtos(bridges);
+        return bridgeOverviewDtos;
 
     }
+    private static void handleBridgeWidthEndAdjustment(BridgeSearchDto bridgeSearchDto) {
+        Integer bridgeWidthEnd = bridgeSearchDto.getBridgeWidthEnd();
+        if (bridgeWidthEnd.equals(0)) {
+            bridgeSearchDto.setBridgeWidthEnd(Integer.MAX_VALUE);
+        }
+    }
 
-    public List<BridgeMapBasicInfo> findBridgesBy(BridgeSearchDto bridgeSearchDto) {
-        List<Bridge> filteredBridges = bridgeService.findBridgesBy(bridgeSearchDto);
-        List<BridgeMapBasicInfo> bridgeMapBasicInfos = bridgeMapper.toBridgeMapBasicInfo(filteredBridges);
-        return bridgeMapBasicInfos;
+    public List<BridgeLocationInfoDto> findBridgeLocationInfosBy(BridgeSearchDto bridgeSearchDto) {
+        handleBridgeWidthEndAdjustment(bridgeSearchDto);
 
+        List<Bridge> bridges = bridgeService.findBridgesBy(bridgeSearchDto);
+        List<BridgeLocationInfoDto> bridgeLocationInfoDtos = bridgeMapper.toBridgeBasicInfoDtos(bridges);
+        return bridgeLocationInfoDtos;
+    }
+
+
+
+    public List<BridgeLocationInfoDto> findAllBridgeLocationInfos() {
+        List<Bridge> bridges = bridgeService.findAllBridges();
+        List<BridgeLocationInfoDto> bridgeBasicInfoDtos = bridgeMapper.toBridgeBasicInfoDtos(bridges);
+        return bridgeBasicInfoDtos;
     }
 }

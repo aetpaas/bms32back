@@ -1,7 +1,7 @@
 package bridge.bms32back.domain.bridge;
 
-import bridge.bms32back.business.bridges.dto.BridgeCoordinatesAndNameDto;
-import bridge.bms32back.business.bridges.dto.BridgeDto;
+import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
+import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -18,15 +18,15 @@ public interface BridgeMapper {
     @Mapping(source = "conditionIndex", target = "conditionIndex")
     @Mapping(source = "location.county.name", target = "locationCounty")
     @Mapping(source = "material.name", target = "bridgeMaterial")
-    BridgeDto toBridgeDto(Bridge bridge);
-    List<BridgeDto> toBridgeDtos(List<Bridge> bridges);
+    BridgeOverviewDto toBridgeOverviewDto(Bridge bridge);
+    List<BridgeOverviewDto> toBridgeOverviewDtos(List<Bridge> bridges);
 
 
-    @Mapping(source = "id", target = "id")
+    @Mapping(source = "id", target = "bridgeId")
     @Mapping(source = "name", target = "bridgeName")
     @Mapping(source = "location.latitude", target = "locationLatitude")
     @Mapping(source = "location.longitude", target = "locationLongitude")
-    BridgeCoordinatesAndNameDto toBridgeBasicInfoDto(Bridge bridgeBy);
+    BridgeLocationInfoDto toBridgeBasicInfoDto(Bridge bridge);
 
-    List<BridgeCoordinatesAndNameDto> toBridgeBasicInfoDtos(List<Bridge> bridgesBy);
+    List<BridgeLocationInfoDto> toBridgeBasicInfoDtos(List<Bridge> bridges);
 }

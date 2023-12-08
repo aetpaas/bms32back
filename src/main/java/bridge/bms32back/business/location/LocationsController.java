@@ -16,9 +16,9 @@ public class LocationsController {
 
 
     @GetMapping("/locations/all/coordinates")
-    public List<Location> getAllBridgesCoordinatesAndName() {
-        List<Location> locations = locationsService.getAllBridgesCoordinates();
-        return locations;
+    public void getAllBridgesCoordinatesAndName() {
+         locationsService.getAllBridgesCoordinates();
+
 
     }
 }

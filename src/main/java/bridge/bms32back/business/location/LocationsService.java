@@ -12,9 +12,9 @@ public class LocationsService {
     @Resource
     private LocationService locationService;
 
-    public List<Location> getAllBridgesCoordinates() {
+    public void getAllBridgesCoordinates() {
         List<Location> locations = locationService.getAllBridgesCoordinates();
-        return ;
+
 
     }
 }

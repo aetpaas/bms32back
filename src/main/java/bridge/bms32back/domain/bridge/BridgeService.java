@@ -17,10 +17,17 @@ public class BridgeService {
     }
 
     public List<Bridge> findBridgesBy(BridgeSearchDto bridgeSearchDto) {
-        List<Bridge> filteredBridges = bridgeRepository.findBridgesBy(bridgeSearchDto.getBridgeName(), bridgeSearchDto.getBridgeNumber(),
-                bridgeSearchDto.getBridgeTypeId(), bridgeSearchDto.getCountyId(), bridgeSearchDto.getMaterialTypeId(),
-                bridgeSearchDto.getBridgeLengthStart(), bridgeSearchDto.getBridgeLengthEnd(), bridgeSearchDto.getBridgeWidthStart(),
-                bridgeSearchDto.getBridgeWidthEnd(), bridgeSearchDto.getConditionIndex());
+        List<Bridge> filteredBridges = bridgeRepository.findBridgesBy(
+                bridgeSearchDto.getBridgeName(),
+                bridgeSearchDto.getBridgeNumber(),
+                bridgeSearchDto.getBridgeTypeId(),
+                bridgeSearchDto.getCountyId(),
+                bridgeSearchDto.getMaterialTypeId(),
+                bridgeSearchDto.getBridgeLengthStart(),
+                bridgeSearchDto.getBridgeLengthEnd(),
+                bridgeSearchDto.getBridgeWidthStart(),
+                bridgeSearchDto.getBridgeWidthEnd(),
+                bridgeSearchDto.getConditionIndex());
         return filteredBridges;
 
     }
