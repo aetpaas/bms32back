@@ -32,8 +32,8 @@ public class BridgesController {
     public List<BridgeLocationInfoDto> findAllBridgeLocationInfos() {
         List<BridgeLocationInfoDto> filteredBridges = bridgesService.findAllBridgeLocationInfos();
         return filteredBridges;
-    }
 
+    }
 
     @PostMapping("/bridges/location/by-criteria")
     @Operation(summary = "Tagastab andmebaasist sildade asukoha info, mis vastavad filtris sisestatud andmetele")
