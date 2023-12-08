@@ -10,7 +10,7 @@ CREATE TABLE bridge (
     length decimal(5,1)  NOT NULL,
     width decimal(4,1)  NOT NULL,
     type_id int  NOT NULL,
-    condition_index int  NOT NULL,
+    condition_index decimal(4,1)  NOT NULL,
     location_id int  NOT NULL,
     material_id int  NOT NULL,
     CONSTRAINT bridge_pk PRIMARY KEY (id)

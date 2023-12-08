@@ -25,6 +25,7 @@ public class BridgesService {
         return bridgeOverviewDtos;
 
     }
+
     private static void handleBridgeWidthEndAdjustment(BridgeSearchDto bridgeSearchDto) {
         Integer bridgeWidthEnd = bridgeSearchDto.getBridgeWidthEnd();
         if (bridgeWidthEnd.equals(0)) {
@@ -32,14 +33,29 @@ public class BridgesService {
         }
     }
 
+    private static void handleBridgeLengthEndAdjustment(BridgeSearchDto bridgeSearchDto) {
+        Integer bridgeLengthEnd = bridgeSearchDto.getBridgeLengthEnd();
+        if (bridgeLengthEnd.equals(0)) {
+            bridgeSearchDto.setBridgeLengthEnd(Integer.MAX_VALUE);
+        }
+    }
+
+    private static void handleConditionIndexEndAdjustment(BridgeSearchDto bridgeSearchDto) {
+        Integer conditionIndexEnd = bridgeSearchDto.getConditionIndexEnd();
+        if (conditionIndexEnd.equals(0)) {
+            bridgeSearchDto.setConditionIndexEnd(Integer.MAX_VALUE);
+        }
+    }
+
     public List<BridgeLocationInfoDto> findBridgeLocationInfosBy(BridgeSearchDto bridgeSearchDto) {
         handleBridgeWidthEndAdjustment(bridgeSearchDto);
+        handleBridgeLengthEndAdjustment(bridgeSearchDto);
+        handleConditionIndexEndAdjustment(bridgeSearchDto);
 
         List<Bridge> bridges = bridgeService.findBridgesBy(bridgeSearchDto);
         List<BridgeLocationInfoDto> bridgeLocationInfoDtos = bridgeMapper.toBridgeBasicInfoDtos(bridges);
         return bridgeLocationInfoDtos;
     }
-
 
 
     public List<BridgeLocationInfoDto> findAllBridgeLocationInfos() {

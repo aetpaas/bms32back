@@ -35,8 +35,11 @@ INSERT INTO project.location(id, county_id, latitude, longitude) VALUES (DEFAULT
 INSERT INTO project.location(id, county_id, latitude, longitude) VALUES (DEFAULT, 15, 58.731887, 23.992332);
 INSERT INTO project.location(id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.175789, 24.502101);
 INSERT INTO project.location(id, county_id, latitude, longitude) VALUES (DEFAULT, 15, 59.280388, 24.978404);
+INSERT INTO project.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 11, 58.228452, 22.382314);
+
 
 INSERT INTO project.bridge (id, number, name, length, width, type_id, condition_index, location_id, material_id) VALUES (DEFAULT, 937, 'ALA-RÕUGE', 11.8, 11,2,98,1,1);
 INSERT INTO project.bridge (id, number, name, length, width, type_id, condition_index, location_id, material_id) VALUES (DEFAULT,350,'KASARI (Vana)',307.80,7.00,2,83,2,3);
 INSERT INTO project.bridge (id, number, name, length, width, type_id, condition_index, location_id, material_id) VALUES (DEFAULT,1310,'KERNU Ökodukt',11.00,20.00,4,83,3,2);
 INSERT INTO project.bridge (id, number, name, length, width, type_id, condition_index, location_id, material_id) VALUES (DEFAULT,150,'VAIDA Jalakäijate sild',132.00,4.00,2,100,4,2);
+INSERT INTO project.bridge (id, number, name, length, width, type_id, condition_index, location_id, material_id) VALUES (DEFAULT,1043,'NASVA SILD',18.20,14.00,2,89.8,5,2);

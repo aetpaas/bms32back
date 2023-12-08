@@ -22,6 +22,4 @@ public interface BridgeRepository extends JpaRepository<Bridge, Integer> {
     List<Bridge> findBridgesBy(String name, Integer number, Integer typeId, Integer countyId, Integer materialId, Integer lengthStart, Integer lengthEnd, Integer widthStart, Integer widthEnd, Integer conditionIndexStart, Integer conditionIndexEnd);
 
 
-
-
 }
