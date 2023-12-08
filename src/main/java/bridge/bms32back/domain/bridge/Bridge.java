@@ -1,6 +1,6 @@
 package bridge.bms32back.domain.bridge;
 
-import bridge.bms32back.domain.location.Location;
+import bridge.bms32back.domain.Location;
 import bridge.bms32back.domain.Material;
 import bridge.bms32back.domain.Type;
 import jakarta.persistence.*;

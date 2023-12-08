@@ -17,7 +17,7 @@ public class BridgeService {
     }
 
     public List<Bridge> findBridgesBy(BridgeSearchDto bridgeSearchDto) {
-        List<Bridge> filteredBridges = bridgeRepository.findBridgesBy(
+        List<Bridge> bridges = bridgeRepository.findBridgesBy(
                 bridgeSearchDto.getBridgeName(),
                 bridgeSearchDto.getBridgeNumber(),
                 bridgeSearchDto.getBridgeTypeId(),
@@ -27,8 +27,9 @@ public class BridgeService {
                 bridgeSearchDto.getBridgeLengthEnd(),
                 bridgeSearchDto.getBridgeWidthStart(),
                 bridgeSearchDto.getBridgeWidthEnd(),
-                bridgeSearchDto.getConditionIndex());
-        return filteredBridges;
+                bridgeSearchDto.getConditionIndexStart(),
+                bridgeSearchDto.getConditionIndexEnd());
+        return bridges;
 
     }
 }

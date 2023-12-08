@@ -19,7 +19,7 @@ public class BridgesController {
     private BridgesService bridgesService;
 
 
-    @GetMapping("/bridges/all/overview")
+    @GetMapping("/bridges/overview/all")
     @Operation(summary = "Tagastab kõikide sildade info Kõik sillad vaatel")
     public List<BridgeOverviewDto> findAllBridgesOverview() {
         List<BridgeOverviewDto> bridgesOverview = bridgesService.findAllBridgesOverview();
@@ -27,7 +27,7 @@ public class BridgesController {
     }
 
 
-    @PostMapping("/bridges/criteria")
+    @GetMapping("/bridges/location/all")
     @Operation(summary = "Tagastab andmebaasist kõikide sildade asukoha info")
     public List<BridgeLocationInfoDto> findAllBridgeLocationInfos() {
         List<BridgeLocationInfoDto> filteredBridges = bridgesService.findAllBridgeLocationInfos();
@@ -35,7 +35,7 @@ public class BridgesController {
     }
 
 
-    @PostMapping("/bridges/criteria")
+    @PostMapping("/bridges/location/by-criteria")
     @Operation(summary = "Tagastab andmebaasist sildade asukoha info, mis vastavad filtris sisestatud andmetele")
     public List<BridgeLocationInfoDto> findBridgeLocationInfosBy(@RequestBody BridgeSearchDto bridgeSearchDto) {
         List<BridgeLocationInfoDto> filteredBridges = bridgesService.findBridgeLocationInfosBy(bridgeSearchDto);

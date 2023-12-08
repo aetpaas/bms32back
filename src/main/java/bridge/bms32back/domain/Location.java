@@ -1,4 +1,4 @@
-package bridge.bms32back.domain.location;
+package bridge.bms32back.domain;
 
 import bridge.bms32back.domain.County;
 import jakarta.persistence.*;
