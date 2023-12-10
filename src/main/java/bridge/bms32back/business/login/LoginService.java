@@ -20,4 +20,8 @@ public class LoginService {
         return userMapper.toLoginResponse(user);
 
     }
+
+    public void addUser(String username, String password) {
+       userService.addNewUser(username, password);
+    }
 }

@@ -17,7 +17,8 @@ public class UserService {
     public User findActiveUserBy(String username, String password) {
         Optional<User> optionalUser = userRepository.findUserBy(username, password, Status.ACTIVE);
         return ValidationService.getValidUser(optionalUser);
-
-
+    }
+    public void addNewUser(String username, String password) {
+         userRepository.addUser(username, password);
     }
 }
