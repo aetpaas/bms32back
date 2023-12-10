@@ -1,4 +1,4 @@
-package bridge.bms32back.domain;
+package bridge.bms32back.domain.type;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
