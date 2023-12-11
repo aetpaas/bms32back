@@ -1,7 +1,7 @@
 package bridge.bms32back.domain.bridge;
 
 import bridge.bms32back.domain.Location;
-import bridge.bms32back.domain.Material;
+import bridge.bms32back.domain.material.Material;
 import bridge.bms32back.domain.Type;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
