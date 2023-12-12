@@ -1,6 +1,7 @@
 package bridge.bms32back.business.bridges.dto;
 
 import bridge.bms32back.domain.bridge.Bridge;
+import bridge.bms32back.domain.bridge.Position;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * DTO for {@link Bridge}
@@ -21,6 +21,6 @@ public class BridgeLocationInfoDto implements Serializable {
     @NotNull
     @Size(max = 255)
     private String bridgeName;
-    private BigDecimal locationLatitude;
-    private BigDecimal locationLongitude;
+    private Position position;
+
 }

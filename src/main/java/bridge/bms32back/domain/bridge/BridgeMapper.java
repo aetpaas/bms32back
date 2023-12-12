@@ -24,8 +24,8 @@ public interface BridgeMapper {
 
     @Mapping(source = "id", target = "bridgeId")
     @Mapping(source = "name", target = "bridgeName")
-    @Mapping(source = "location.latitude", target = "locationLatitude")
-    @Mapping(source = "location.longitude", target = "locationLongitude")
+    @Mapping(source = "location.latitude", target = "position.lat")
+    @Mapping(source = "location.longitude", target = "position.lng")
     BridgeLocationInfoDto toBridgeBasicInfoDto(Bridge bridge);
 
     List<BridgeLocationInfoDto> toBridgeBasicInfoDtos(List<Bridge> bridges);
