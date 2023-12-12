@@ -12,10 +12,10 @@ public interface BridgeRepository extends JpaRepository<Bridge, Integer> {
     @Query("""
             select b from Bridge b
             where upper(b.name) like upper(concat('%', :name, '%'))
-            and b.number = :number
+            and (b.number = :number or :number = 0)
             and (b.type.id = :typeId or :typeId = 0)
-            and b.location.county.id = :countyId
-            and b.material.id = :materialId
+            and (b.location.county.id = :countyId or :countyId = 0)
+            and (b.material.id = :materialId or :materialId = 0)
             and (b.length between :lengthStart and :lengthEnd)
             and (b.width between :widthStart and :widthEnd)
             and b.conditionIndex between :conditionIndexStart and :conditionIndexEnd""")
