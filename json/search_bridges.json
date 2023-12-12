@@ -1,0 +1,13 @@
+{
+  "bridgeName": "RÕUGE",
+  "bridgeNumber": 937,
+  "bridgeTypeId": 2,
+  "countyId": 15,
+  "materialTypeId": 1,
+  "bridgeLengthStart": 2,
+  "bridgeLengthEnd": 80,
+  "bridgeWidthStart": 2,
+  "bridgeWidthEnd": 20,
+  "conditionIndexStart": 22,
+  "conditionIndexEnd": 100
+}
