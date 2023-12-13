@@ -1,9 +1,9 @@
 package bridge.bms32back.business.bridges;
 
+import bridge.bms32back.business.bridges.dto.BridgeDetailedDto;
 import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
-import bridge.bms32back.domain.bridge.Bridge;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -41,9 +41,10 @@ public class BridgesController {
     }
 
     @GetMapping("/bridge/")
-    public Bridge getBridgeBy(@RequestParam Integer bridgeId){
-        Bridge bridge = bridgesService.getBridgeBy(bridgeId);
-        return bridge;
+    public BridgeDetailedDto getBridgeBy(@RequestParam Integer bridgeId){
+        BridgeDetailedDto bridgeDetailedDto = bridgesService.getBridgeBy(bridgeId);
+        return bridgeDetailedDto;
+
     }
 
 }

@@ -1,5 +1,6 @@
 package bridge.bms32back.business.bridges;
 
+import bridge.bms32back.business.bridges.dto.BridgeDetailedDto;
 import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
@@ -83,8 +84,9 @@ public class BridgesService {
         locationService.deleteLocationBy(location);
     }
 
-    public Bridge getBridgeBy(Integer bridgeId) {
+    public BridgeDetailedDto getBridgeBy(Integer bridgeId) {
         Bridge bridge = bridgeService.getBridgeBy(bridgeId);
-        bridgeMapper.
+        BridgeDetailedDto bridgeDetailedDto = bridgeMapper.toBridgeDetailedDto(bridge);
+        return bridgeDetailedDto;
     }
 }

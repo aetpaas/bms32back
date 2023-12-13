@@ -19,23 +19,19 @@ import java.math.BigDecimal;
 public class BridgeDetailedDto implements Serializable {
     private Integer bridgeId;
     @NotNull
-    private Integer number;
+    private Integer bridgeNumber;
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String bridgeName;
     @NotNull
     private BigDecimal length;
     @NotNull
     private BigDecimal width;
-    private Integer typeId;
-    private String typeName;
+    private String bridgeTypeName;
     @NotNull
     private Integer conditionIndex;
-    private Integer locationLocationId;
-    private Integer locationCountyId;
     private String locationCountyName;
     private BigDecimal locationLatitude;
     private BigDecimal locationLongitude;
-    private Integer materialId;
     private String materialName;
 }
