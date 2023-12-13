@@ -82,4 +82,9 @@ public class BridgesService {
         bridgeService.deleteBridge(bridge);
         locationService.deleteLocationBy(location);
     }
+
+    public Bridge getBridgeBy(Integer bridgeId) {
+        Bridge bridge = bridgeService.getBridgeBy(bridgeId);
+        return bridge;
+    }
 }

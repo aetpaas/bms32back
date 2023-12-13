@@ -3,6 +3,7 @@ package bridge.bms32back.business.bridges;
 import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
+import bridge.bms32back.domain.bridge.Bridge;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +40,10 @@ public class BridgesController {
         return bridgeLocationInfoDtos;
     }
 
-    @DeleteMapping("/bridge")
-    public void deleteBridgeInfo(@RequestParam Integer bridgeId) {
-        bridgesService.deleteBridgeInfo(bridgeId);
-
+    @GetMapping("/bridge/")
+    public Bridge getBridgeBy(@RequestParam Integer bridgeId){
+        Bridge bridge = bridgesService.getBridgeBy(bridgeId);
+        return bridge;
     }
+
 }
