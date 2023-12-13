@@ -85,6 +85,6 @@ public class BridgesService {
 
     public Bridge getBridgeBy(Integer bridgeId) {
         Bridge bridge = bridgeService.getBridgeBy(bridgeId);
-        return bridge;
+        bridgeMapper.
     }
 }
