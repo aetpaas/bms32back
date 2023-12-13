@@ -32,4 +32,14 @@ public class BridgeService {
         return bridges;
 
     }
+
+    public Bridge getBridgeBy(Integer bridgeId) {
+        Bridge bridge = bridgeRepository.getReferenceById(bridgeId);
+        return bridge;
+
+    }
+
+    public void deleteBridge(Bridge bridge) {
+        bridgeRepository.delete(bridge);
+    }
 }

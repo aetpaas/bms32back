@@ -1,5 +1,6 @@
-package bridge.bms32back.domain.bridge;
+package bridge.bms32back.business.bridges.dto;
 
+import bridge.bms32back.domain.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * DTO for {@link bridge.bms32back.domain.Location}
+ * DTO for {@link Location}
  */
 @Data
 @AllArgsConstructor

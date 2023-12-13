@@ -1,4 +1,4 @@
-package bridge.bms32back.domain;
+package bridge.bms32back.domain.location;
 
 import bridge.bms32back.domain.county.County;
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Integer locationId;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

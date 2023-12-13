@@ -1,7 +1,6 @@
 package bridge.bms32back.business.bridges.dto;
 
 import bridge.bms32back.domain.bridge.Bridge;
-import bridge.bms32back.domain.bridge.Position;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

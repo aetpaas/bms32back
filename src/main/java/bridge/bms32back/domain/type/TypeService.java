@@ -10,8 +10,7 @@ public class TypeService {
     @Resource
     private TypeRepository typeRepository;
 
-    public List<Type> findBridgeType() {
-        List<Type> types = typeRepository.findAll();
+    public List<Type> findBridgeType() {List<Type> types = typeRepository.findAll();
         return types;
     }
 }

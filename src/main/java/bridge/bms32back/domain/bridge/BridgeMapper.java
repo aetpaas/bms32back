@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface BridgeMapper {
 
-    @Mapping(source = "id", target = "bridgeId")
+    @Mapping(source = "bridgeId", target = "bridgeId")
     @Mapping(source = "number", target = "bridgeNumber")
     @Mapping(source = "name", target = "bridgeName")
     @Mapping(source = "length", target = "bridgeLength")
@@ -22,7 +22,7 @@ public interface BridgeMapper {
     List<BridgeOverviewDto> toBridgeOverviewDtos(List<Bridge> bridges);
 
 
-    @Mapping(source = "id", target = "bridgeId")
+    @Mapping(source = "bridgeId", target = "bridgeId")
     @Mapping(source = "name", target = "bridgeName")
     @Mapping(source = "location.latitude", target = "position.lat")
     @Mapping(source = "location.longitude", target = "position.lng")
