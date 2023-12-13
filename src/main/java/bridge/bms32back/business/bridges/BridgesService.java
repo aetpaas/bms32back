@@ -1,12 +1,17 @@
 package bridge.bms32back.business.bridges;
 
+import bridge.bms32back.business.bridges.dto.BridgeDetailedDto;
 import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
 import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
 import bridge.bms32back.domain.bridge.Bridge;
 import bridge.bms32back.domain.bridge.BridgeMapper;
 import bridge.bms32back.domain.bridge.BridgeService;
+import bridge.bms32back.domain.location.Location;
+import bridge.bms32back.domain.location.LocationRepository;
+import bridge.bms32back.domain.location.LocationService;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +22,14 @@ public class BridgesService {
     @Resource
     private BridgeService bridgeService;
     @Resource
+    private LocationService locationService;
+    @Resource
     private BridgeMapper bridgeMapper;
+    private final LocationRepository locationRepository;
+
+    public BridgesService(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
 
     public List<BridgeOverviewDto> findAllBridgesOverview() {
         List<Bridge> bridges = bridgeService.findAllBridges();
@@ -64,4 +76,17 @@ public class BridgesService {
         return bridgeLocationInfoDtos;
     }
 
+    @Transactional
+    public void deleteBridgeInfo(Integer bridgeId) {
+        Bridge bridge = bridgeService.getBridgeBy(bridgeId);
+        Location location = bridge.getLocation();
+        bridgeService.deleteBridge(bridge);
+        locationService.deleteLocationBy(location);
+    }
+
+    public BridgeDetailedDto getBridgeBy(Integer bridgeId) {
+        Bridge bridge = bridgeService.getBridgeBy(bridgeId);
+        BridgeDetailedDto bridgeDetailedDto = bridgeMapper.toBridgeDetailedDto(bridge);
+        return bridgeDetailedDto;
+    }
 }

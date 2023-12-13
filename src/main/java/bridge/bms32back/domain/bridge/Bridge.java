@@ -1,6 +1,6 @@
 package bridge.bms32back.domain.bridge;
 
-import bridge.bms32back.domain.Location;
+import bridge.bms32back.domain.location.Location;
 import bridge.bms32back.domain.material.Material;
 import bridge.bms32back.domain.type.Type;
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ public class Bridge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Integer bridgeId;
 
     @NotNull
     @Column(name = "number", nullable = false)

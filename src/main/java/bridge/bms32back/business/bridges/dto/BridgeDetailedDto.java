@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * DTO for {@link Bridge}
@@ -15,11 +16,22 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BridgeLocationInfoDto implements Serializable {
+public class BridgeDetailedDto implements Serializable {
     private Integer bridgeId;
+    @NotNull
+    private Integer bridgeNumber;
     @NotNull
     @Size(max = 255)
     private String bridgeName;
-    private Position position;
-
+    @NotNull
+    private BigDecimal length;
+    @NotNull
+    private BigDecimal width;
+    private String bridgeTypeName;
+    @NotNull
+    private Integer conditionIndex;
+    private String locationCountyName;
+    private BigDecimal locationLatitude;
+    private BigDecimal locationLongitude;
+    private String materialName;
 }
