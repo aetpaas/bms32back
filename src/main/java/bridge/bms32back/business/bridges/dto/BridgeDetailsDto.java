@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BridgeDetailedDto implements Serializable {
+public class BridgeDetailsDto implements Serializable {
     private Integer bridgeId;
     @NotNull
     private Integer bridgeNumber;

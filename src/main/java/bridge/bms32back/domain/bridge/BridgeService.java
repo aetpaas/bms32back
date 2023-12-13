@@ -42,4 +42,6 @@ public class BridgeService {
     public void deleteBridge(Bridge bridge) {
         bridgeRepository.delete(bridge);
     }
+
+
 }
