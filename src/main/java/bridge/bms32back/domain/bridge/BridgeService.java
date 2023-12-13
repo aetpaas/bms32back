@@ -44,4 +44,7 @@ public class BridgeService {
     }
 
 
+    public void saveNewBridge(Bridge bridge) {
+        bridgeRepository.save(bridge);
+    }
 }

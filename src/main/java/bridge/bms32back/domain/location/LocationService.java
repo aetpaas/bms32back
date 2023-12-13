@@ -16,4 +16,11 @@ public class LocationService {
     public void deleteLocationBy(Location location) {
         locationRepository.delete(location);
     }
+
+
+    public Location createNewLocation(Location location) {
+        locationRepository.save(location);
+        return location;
+    }
+
 }

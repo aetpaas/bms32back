@@ -1,9 +1,6 @@
 package bridge.bms32back.business.bridges;
 
-import bridge.bms32back.business.bridges.dto.BridgeDetailsDto;
-import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
-import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
-import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
+import bridge.bms32back.business.bridges.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -49,8 +46,8 @@ public class BridgesController {
     }
 
     @PostMapping("/bridge")
-    public void addNewBridge(@RequestBody @Valid BridgeDetailsDto bridgeDetailsDto) {
-        bridgesService.addNewBridge(bridgeDetailsDto);
+    public void addNewBridge(@RequestBody @Valid BridgeAddDto bridgeAddDto) {
+        bridgesService.addNewBridge(bridgeAddDto);
 
     }
 }
