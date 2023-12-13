@@ -63,4 +63,5 @@ public class BridgesService {
         List<BridgeLocationInfoDto> bridgeLocationInfoDtos = bridgeMapper.toBridgeBasicInfoDtos(bridges);
         return bridgeLocationInfoDtos;
     }
+
 }
