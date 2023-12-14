@@ -1,5 +1,6 @@
 package bridge.bms32back.business.bridges;
 
+import bridge.bms32back.business.BridgeImageType;
 import bridge.bms32back.business.bridges.dto.*;
 import bridge.bms32back.business.location.LocationsService;
 import bridge.bms32back.domain.bridge.Bridge;
@@ -107,45 +108,42 @@ public class BridgesService {
 
     @Transactional
     public void addNewBridge(BridgeRequestDto bridgeRequestDto) {
+        Bridge bridge = createAndSaveBridge(bridgeRequestDto);
+        createAndSaveCoverImage(bridgeRequestDto.getImageData(), bridge);
+        handleSpecialImage(bridgeRequestDto.getSpecialImageData(), bridge);
+    }
+
+    private Bridge createAndSaveBridge(BridgeRequestDto bridgeRequestDto) {
         Type type = typeService.getTypeBy(bridgeRequestDto.getBridgeTypeId());
         Material material = materialService.getMaterialTypeBy(bridgeRequestDto.getMaterialId());
         Location location = createAndAddLocation(bridgeRequestDto);
 
-        Bridge bridge = setBridgeTypeLocationAndMaterial(bridgeRequestDto, type, location, material);
-        // see üleval asi teha meetodiks
+        Bridge bridge = bridgeMapper.toBridge(bridgeRequestDto);
+        bridge.setType(type);
+        bridge.setLocation(location);
+        bridge.setMaterial(material);
 
         bridgeService.saveBridge(bridge);
-        setCoverImageBridgeIdAndTypeAndSaveImage(bridgeRequestDto, bridge);
+        return bridge;
+    }
 
-
-        String specialImageData = bridgeRequestDto.getSpecialImageData();
+    private void handleSpecialImage(String specialImageData, Bridge bridge) {
         if (imageDataExists(specialImageData)) {
             Image specialImage = ImageConverter.stringToImage(specialImageData);
             specialImage.setBridge(bridge);
-            specialImage.setType("S");
+            specialImage.setType(BridgeImageType.SPECIAL_IMAGE);
             imageService.saveSpecialImage(specialImage);
         }
-
-//        Image specialImage = ImageConverter.stringToImage((bridgeRequestDto.getSpecialImageData()));
-//        if (specialImage == null) {
-//
-//        }
-//
-
-
-        //enne tuleb salvestada location, materjal, tüüp, alles siis sild.
-        //lisada pildi salvestamine
-
     }
 
     private static boolean imageDataExists(String specialImageData) {
         return specialImageData != null && !specialImageData.isEmpty();
     }
 
-    private void setCoverImageBridgeIdAndTypeAndSaveImage(BridgeRequestDto bridgeRequestDto, Bridge bridge) {
-        Image coverImage = ImageConverter.stringToImage(bridgeRequestDto.getImageData());
+    private void createAndSaveCoverImage(String imageData, Bridge bridge) {
+        Image coverImage = ImageConverter.stringToImage(imageData);
         coverImage.setBridge(bridge);
-        coverImage.setType("P");
+        coverImage.setType(BridgeImageType.COVER_IMAGE);
         imageService.saveCoverImage(coverImage);
     }
 
