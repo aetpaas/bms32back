@@ -23,7 +23,7 @@ public class Image {
 
     @NotNull
     @Column(name = "data", nullable = false)
-    private byte[] data;
+    private byte[] imageData;
 
     @NotNull
     @Column(name = "type", nullable = false, length = Integer.MAX_VALUE)

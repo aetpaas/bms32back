@@ -11,7 +11,7 @@ public class ImageConverter {
             return null;
         }
         Image image = new Image();
-        image.setData(stringToByteArray(imageData));
+        image.setImageData(stringToByteArray(imageData));
         return image;
     }
 
