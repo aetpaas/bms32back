@@ -109,7 +109,7 @@ public class BridgesService {
     public BridgeDetailsDto getBridgeBy(Integer bridgeId) {
         Bridge bridge = bridgeService.getBridgeBy(bridgeId);
         BridgeDetailsDto bridgeDetailsDto = bridgeMapper.toBridgeDetailsDto(bridge);
-        imageRepository.getImageBy(bridgeDetailsDto.getBridgeId())
+        imageRepository.getImageBy(bridgeDetailsDto.getBridgeId(),bridge)
         return bridgeDetailsDto;
     }
 
