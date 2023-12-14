@@ -1,6 +1,6 @@
 package bridge.bms32back.domain.bridge;
 
-import bridge.bms32back.business.bridges.dto.BridgeAddDto;
+import bridge.bms32back.business.bridges.dto.BridgeRequestDto;
 import bridge.bms32back.business.bridges.dto.BridgeDetailsDto;
 import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
 import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
@@ -51,5 +51,5 @@ public interface BridgeMapper {
     @Mapping(source = "length", target = "length")
     @Mapping(source = "width", target = "width")
     @Mapping(source = "conditionIndex", target = "conditionIndex")
-    Bridge toBridge(BridgeAddDto bridgeAddDto);
+    Bridge toBridge(BridgeRequestDto bridgeRequestDto);
 }

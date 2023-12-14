@@ -5,8 +5,10 @@ import bridge.bms32back.business.location.LocationsService;
 import bridge.bms32back.domain.bridge.Bridge;
 import bridge.bms32back.domain.bridge.BridgeMapper;
 import bridge.bms32back.domain.bridge.BridgeService;
+import bridge.bms32back.domain.county.County;
+import bridge.bms32back.domain.county.CountyService;
 import bridge.bms32back.domain.location.Location;
-import bridge.bms32back.domain.location.LocationRepository;
+import bridge.bms32back.domain.location.LocationMapper;
 import bridge.bms32back.domain.location.LocationService;
 import bridge.bms32back.domain.material.Material;
 import bridge.bms32back.domain.material.MaterialService;
@@ -33,11 +35,11 @@ public class BridgesService {
     private MaterialService materialService;
     @Resource
     private BridgeMapper bridgeMapper;
-    private final LocationRepository locationRepository;
+    @Resource
+    private LocationMapper locationMapper;
+    @Resource
+    private CountyService countyService;
 
-    public BridgesService(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
 
     public List<BridgeOverviewDto> findAllBridgesOverview() {
         List<Bridge> bridges = bridgeService.findAllBridges();
@@ -98,24 +100,30 @@ public class BridgesService {
         return bridgeDetailsDto;
     }
 
-    public void addNewBridge(BridgeAddDto bridgeAddDto) {
-        Bridge bridge = bridgeMapper.toBridge(bridgeAddDto);
-        Type type = typeService.getTypeBy(bridgeAddDto.getBridgeTypeId());
+    public void addNewBridge(BridgeRequestDto bridgeRequestDto) {
+        Type type = typeService.getTypeBy(bridgeRequestDto.getBridgeTypeId());
+        Material material = materialService.getMaterialTypeBy(bridgeRequestDto.getMaterialId());
+        Location location = createAndAddLocation(bridgeRequestDto);
+
+        Bridge bridge = bridgeMapper.toBridge(bridgeRequestDto);
         bridge.setType(type);
-        Location location = locationsService.addLocation(bridgeAddDto);
         bridge.setLocation(location);
-        Material material = materialService.getMaterialTypeBy(bridgeAddDto.getMaterialId());
         bridge.setMaterial(material);
-        bridgeService.saveNewBridge(bridge);
+        // see üleval asi teha meetodiks
 
+        bridgeService.saveBridge(bridge);
 
-        // vaja minna locationService ja selle kaudu mappida location entity, kasutades koordinaate
-        // siis tleb võtta county service caudu countyRepost countyId ning anda see edasi location entitile
-        //tuua see location entity tagasi bridgesService teenusesse ning anda locationId bridge entitile
-        //sama teha ka materjaliga
 
         //enne tuleb salvestada location, materjal, tüüp, alles siis sild.
+        //lisada pildi salvestamine
 
+    }
+
+    public Location createAndAddLocation(BridgeRequestDto bridgeRequestDto) {
+        Location location = locationMapper.toLocation(bridgeRequestDto);
+        County county = countyService.getCountyBy(bridgeRequestDto.getLocationCountyId());
+        location.setCounty(county);
+        return locationService.saveLocation(location);
 
     }
 }

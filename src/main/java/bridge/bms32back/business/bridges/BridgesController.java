@@ -46,8 +46,9 @@ public class BridgesController {
     }
 
     @PostMapping("/bridge")
-    public void addNewBridge(@RequestBody @Valid BridgeAddDto bridgeAddDto) {
-        bridgesService.addNewBridge(bridgeAddDto);
+    @Operation(summary = "Lisab uue silla andmed koos pildi ja huvitava faktiga")
+    public void addNewBridge(@RequestBody @Valid BridgeRequestDto bridgeRequestDto) {
+        bridgesService.addNewBridge(bridgeRequestDto);
 
     }
 }

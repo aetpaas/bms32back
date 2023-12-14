@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BridgeAddDto implements Serializable {
+public class BridgeRequestDto implements Serializable {
     @NotNull
     private Integer bridgeNumber;
     @NotNull
@@ -38,4 +38,7 @@ public class BridgeAddDto implements Serializable {
     private BigDecimal locationLongitude;
     @NotNull
     private Integer materialId;
+    private String imageData;
+    private String specialImageData;
+    private String interestingFactData;
 }
