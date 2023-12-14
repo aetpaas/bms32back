@@ -38,6 +38,7 @@ public class BridgeRequestDto implements Serializable {
     private BigDecimal locationLongitude;
     @NotNull
     private Integer materialId;
+    @NotNull
     private String imageData;
     private String specialImageData;
     private String interestingFactData;

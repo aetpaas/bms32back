@@ -7,6 +7,8 @@ import bridge.bms32back.domain.bridge.BridgeMapper;
 import bridge.bms32back.domain.bridge.BridgeService;
 import bridge.bms32back.domain.county.County;
 import bridge.bms32back.domain.county.CountyService;
+import bridge.bms32back.domain.image.Image;
+import bridge.bms32back.domain.image.ImageService;
 import bridge.bms32back.domain.location.Location;
 import bridge.bms32back.domain.location.LocationMapper;
 import bridge.bms32back.domain.location.LocationService;
@@ -14,6 +16,7 @@ import bridge.bms32back.domain.material.Material;
 import bridge.bms32back.domain.material.MaterialService;
 import bridge.bms32back.domain.type.Type;
 import bridge.bms32back.domain.type.TypeService;
+import bridge.bms32back.infrastructure.ImageConverter;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -33,6 +36,8 @@ public class BridgesService {
     private TypeService typeService;
     @Resource
     private MaterialService materialService;
+    @Resource
+    private ImageService imageService;
     @Resource
     private BridgeMapper bridgeMapper;
     @Resource
@@ -100,23 +105,56 @@ public class BridgesService {
         return bridgeDetailsDto;
     }
 
+    @Transactional
     public void addNewBridge(BridgeRequestDto bridgeRequestDto) {
         Type type = typeService.getTypeBy(bridgeRequestDto.getBridgeTypeId());
         Material material = materialService.getMaterialTypeBy(bridgeRequestDto.getMaterialId());
         Location location = createAndAddLocation(bridgeRequestDto);
 
-        Bridge bridge = bridgeMapper.toBridge(bridgeRequestDto);
-        bridge.setType(type);
-        bridge.setLocation(location);
-        bridge.setMaterial(material);
+        Bridge bridge = setBridgeTypeLocationAndMaterial(bridgeRequestDto, type, location, material);
         // see üleval asi teha meetodiks
 
         bridgeService.saveBridge(bridge);
+        setCoverImageBridgeIdAndTypeAndSaveImage(bridgeRequestDto, bridge);
+
+
+        String specialImageData = bridgeRequestDto.getSpecialImageData();
+        if (imageDataExists(specialImageData)) {
+            Image specialImage = ImageConverter.stringToImage(specialImageData);
+            specialImage.setBridge(bridge);
+            specialImage.setType("S");
+            imageService.saveSpecialImage(specialImage);
+        }
+
+//        Image specialImage = ImageConverter.stringToImage((bridgeRequestDto.getSpecialImageData()));
+//        if (specialImage == null) {
+//
+//        }
+//
 
 
         //enne tuleb salvestada location, materjal, tüüp, alles siis sild.
         //lisada pildi salvestamine
 
+    }
+
+    private static boolean imageDataExists(String specialImageData) {
+        return specialImageData != null && !specialImageData.isEmpty();
+    }
+
+    private void setCoverImageBridgeIdAndTypeAndSaveImage(BridgeRequestDto bridgeRequestDto, Bridge bridge) {
+        Image coverImage = ImageConverter.stringToImage(bridgeRequestDto.getImageData());
+        coverImage.setBridge(bridge);
+        coverImage.setType("P");
+        imageService.saveCoverImage(coverImage);
+    }
+
+    private Bridge setBridgeTypeLocationAndMaterial(BridgeRequestDto bridgeRequestDto, Type type, Location location, Material material) {
+        Bridge bridge = bridgeMapper.toBridge(bridgeRequestDto);
+        bridge.setType(type);
+        bridge.setLocation(location);
+        bridge.setMaterial(material);
+        return bridge;
     }
 
     public Location createAndAddLocation(BridgeRequestDto bridgeRequestDto) {
