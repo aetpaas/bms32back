@@ -51,4 +51,10 @@ public class BridgesController {
         bridgesService.addNewBridge(bridgeRequestDto);
 
     }
+
+    @DeleteMapping("/bridge")
+    public void deleteBridgeInfo(@RequestParam Integer bridgeId) {
+        bridgesService.deleteBridgeInfo(bridgeId);
+
+    }
 }
