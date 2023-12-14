@@ -14,4 +14,9 @@ public class MaterialService {
         List<Material> materials = materialRepository.findAll();
         return materials;
     }
+
+    public Material getMaterialTypeBy(Integer materialId) {
+        Material material = materialRepository.getReferenceById(materialId);
+        return material;
+    }
 }

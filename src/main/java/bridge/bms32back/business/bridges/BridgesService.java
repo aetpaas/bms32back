@@ -1,15 +1,19 @@
 package bridge.bms32back.business.bridges;
 
-import bridge.bms32back.business.bridges.dto.BridgeDetailedDto;
-import bridge.bms32back.business.bridges.dto.BridgeLocationInfoDto;
-import bridge.bms32back.business.bridges.dto.BridgeOverviewDto;
-import bridge.bms32back.business.bridges.dto.BridgeSearchDto;
+import bridge.bms32back.business.bridges.dto.*;
+import bridge.bms32back.business.location.LocationsService;
 import bridge.bms32back.domain.bridge.Bridge;
 import bridge.bms32back.domain.bridge.BridgeMapper;
 import bridge.bms32back.domain.bridge.BridgeService;
+import bridge.bms32back.domain.county.County;
+import bridge.bms32back.domain.county.CountyService;
 import bridge.bms32back.domain.location.Location;
-import bridge.bms32back.domain.location.LocationRepository;
+import bridge.bms32back.domain.location.LocationMapper;
 import bridge.bms32back.domain.location.LocationService;
+import bridge.bms32back.domain.material.Material;
+import bridge.bms32back.domain.material.MaterialService;
+import bridge.bms32back.domain.type.Type;
+import bridge.bms32back.domain.type.TypeService;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -22,14 +26,20 @@ public class BridgesService {
     @Resource
     private BridgeService bridgeService;
     @Resource
+    private LocationsService locationsService;
+    @Resource
     private LocationService locationService;
     @Resource
+    private TypeService typeService;
+    @Resource
+    private MaterialService materialService;
+    @Resource
     private BridgeMapper bridgeMapper;
-    private final LocationRepository locationRepository;
+    @Resource
+    private LocationMapper locationMapper;
+    @Resource
+    private CountyService countyService;
 
-    public BridgesService(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
 
     public List<BridgeOverviewDto> findAllBridgesOverview() {
         List<Bridge> bridges = bridgeService.findAllBridges();
@@ -84,9 +94,36 @@ public class BridgesService {
         locationService.deleteLocationBy(location);
     }
 
-    public BridgeDetailedDto getBridgeBy(Integer bridgeId) {
+    public BridgeDetailsDto getBridgeBy(Integer bridgeId) {
         Bridge bridge = bridgeService.getBridgeBy(bridgeId);
-        BridgeDetailedDto bridgeDetailedDto = bridgeMapper.toBridgeDetailedDto(bridge);
-        return bridgeDetailedDto;
+        BridgeDetailsDto bridgeDetailsDto = bridgeMapper.toBridgeDetailedDto(bridge);
+        return bridgeDetailsDto;
+    }
+
+    public void addNewBridge(BridgeRequestDto bridgeRequestDto) {
+        Type type = typeService.getTypeBy(bridgeRequestDto.getBridgeTypeId());
+        Material material = materialService.getMaterialTypeBy(bridgeRequestDto.getMaterialId());
+        Location location = createAndAddLocation(bridgeRequestDto);
+
+        Bridge bridge = bridgeMapper.toBridge(bridgeRequestDto);
+        bridge.setType(type);
+        bridge.setLocation(location);
+        bridge.setMaterial(material);
+        // see üleval asi teha meetodiks
+
+        bridgeService.saveBridge(bridge);
+
+
+        //enne tuleb salvestada location, materjal, tüüp, alles siis sild.
+        //lisada pildi salvestamine
+
+    }
+
+    public Location createAndAddLocation(BridgeRequestDto bridgeRequestDto) {
+        Location location = locationMapper.toLocation(bridgeRequestDto);
+        County county = countyService.getCountyBy(bridgeRequestDto.getLocationCountyId());
+        location.setCounty(county);
+        return locationService.saveLocation(location);
+
     }
 }

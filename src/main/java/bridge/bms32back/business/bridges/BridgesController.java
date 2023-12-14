@@ -47,4 +47,16 @@ public class BridgesController {
 
     }
 
+    @PostMapping("/bridge")
+    @Operation(summary = "Lisab uue silla andmed koos pildi ja huvitava faktiga")
+    public void addNewBridge(@RequestBody @Valid BridgeRequestDto bridgeRequestDto) {
+        bridgesService.addNewBridge(bridgeRequestDto);
+
+    }
+
+    @DeleteMapping("/bridge")
+    public void deleteBridgeInfo(@RequestParam Integer bridgeId) {
+        bridgesService.deleteBridgeInfo(bridgeId);
+
+    }
 }

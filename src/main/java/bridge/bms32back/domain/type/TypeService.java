@@ -13,4 +13,9 @@ public class TypeService {
     public List<Type> findBridgeType() {List<Type> types = typeRepository.findAll();
         return types;
     }
+
+    public Type getTypeBy(Integer bridgeTypeId) {
+        Type type = typeRepository.getReferenceById(bridgeTypeId);
+        return type;
+    }
 }

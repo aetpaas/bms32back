@@ -42,4 +42,9 @@ public class BridgeService {
     public void deleteBridge(Bridge bridge) {
         bridgeRepository.delete(bridge);
     }
+
+
+    public void saveBridge(Bridge bridge) {
+        bridgeRepository.save(bridge);
+    }
 }

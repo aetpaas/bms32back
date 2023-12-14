@@ -16,8 +16,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BridgeDetailedDto implements Serializable {
-    private Integer bridgeId;
+public class BridgeRequestDto implements Serializable {
     @NotNull
     private Integer bridgeNumber;
     @NotNull
@@ -27,11 +26,19 @@ public class BridgeDetailedDto implements Serializable {
     private BigDecimal length;
     @NotNull
     private BigDecimal width;
-    private String bridgeTypeName;
+    @NotNull
+    private Integer bridgeTypeId;
     @NotNull
     private Integer conditionIndex;
-    private String locationCountyName;
+    @NotNull
+    private Integer locationCountyId;
+    @NotNull
     private BigDecimal locationLatitude;
+    @NotNull
     private BigDecimal locationLongitude;
-    private String materialName;
+    @NotNull
+    private Integer materialId;
+    private String imageData;
+    private String specialImageData;
+    private String interestingFactData;
 }

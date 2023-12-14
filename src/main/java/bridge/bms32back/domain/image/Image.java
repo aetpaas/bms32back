@@ -1,4 +1,4 @@
-package bridge.bms32back.domain;
+package bridge.bms32back.domain.image;
 
 import bridge.bms32back.domain.bridge.Bridge;
 import jakarta.persistence.*;
