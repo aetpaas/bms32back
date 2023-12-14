@@ -40,8 +40,8 @@ public class BridgesController {
         return bridgeLocationInfoDtos;
     }
 
-    @GetMapping("/bridge/")
-    public BridgeDetailedDto getBridgeBy(@RequestParam Integer bridgeId){
+    @GetMapping("/bridge/{bridgeId}")
+    public BridgeDetailedDto getBridgeBy(@PathVariable Integer bridgeId){
         BridgeDetailedDto bridgeDetailedDto = bridgesService.getBridgeBy(bridgeId);
         return bridgeDetailedDto;
 
