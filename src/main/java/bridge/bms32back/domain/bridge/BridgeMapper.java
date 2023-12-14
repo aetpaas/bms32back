@@ -52,4 +52,11 @@ public interface BridgeMapper {
     @Mapping(source = "width", target = "width")
     @Mapping(source = "conditionIndex", target = "conditionIndex")
     Bridge toBridge(BridgeRequestDto bridgeRequestDto);
+
+    @Mapping(source="bridgeName", target = "name")
+    @Mapping(source="bridgeNumber", target = "number")
+    @Mapping(source="width", target = "width")
+    @Mapping(source="length", target = "length")
+    @Mapping(source="conditionIndex", target = "conditionIndex")
+    Bridge partialUpdate(@MappingTarget Bridge bridge, BridgeRequestDto bridgeRequestDto);
 }

@@ -43,7 +43,7 @@ public class BridgesController {
     }
 
     @GetMapping("/bridge/{bridgeId}")
-    public BridgeDetailsDto getBridgeBy(@PathVariable Integer bridgeId){
+    public BridgeDetailsDto getBridgeBy(@PathVariable Integer bridgeId) {
         BridgeDetailsDto bridgeDetailedDto = bridgesService.getBridgeBy(bridgeId);
         return bridgeDetailedDto;
 
@@ -60,5 +60,10 @@ public class BridgesController {
     public void deleteBridgeInfo(@RequestParam Integer bridgeId) {
         bridgesService.deleteBridgeInfo(bridgeId);
 
+    }
+
+    @PutMapping("/bridge")
+    public void updateBridgeInfo(@RequestParam Integer bridgeId, @RequestBody BridgeRequestDto bridgeRequestDto) {
+        bridgesService.updateBrideInfo(bridgeId, bridgeRequestDto);
     }
 }

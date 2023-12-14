@@ -171,4 +171,19 @@ public class BridgesService {
         return locationService.saveLocation(location);
 
     }
+
+    @Transactional
+    public void updateBrideInfo(Integer bridgeId, BridgeRequestDto bridgeRequestDto) {
+        Type type = typeService.getTypeBy(bridgeRequestDto.getBridgeTypeId());
+        Material material = materialService.getMaterialTypeBy(bridgeRequestDto.getMaterialId());
+        Location location = createAndAddLocation(bridgeRequestDto);
+
+        Bridge bridge = bridgeService.getBridgeBy(bridgeId);
+        bridgeMapper.partialUpdate(bridge, bridgeRequestDto);
+        bridge.setType(type);
+        bridge.setMaterial(material);
+        bridge.setLocation(location);
+        bridgeService.saveBridge(bridge);
+
+    }
 }
