@@ -27,6 +27,7 @@ public class BridgeDetailsDto implements Serializable {
     private BigDecimal length;
     @NotNull
     private BigDecimal width;
+    @NotNull
     private String bridgeTypeName;
     @NotNull
     private Integer conditionIndex;
@@ -34,4 +35,7 @@ public class BridgeDetailsDto implements Serializable {
     private BigDecimal locationLatitude;
     private BigDecimal locationLongitude;
     private String materialName;
+    private String imageData;
+    private String specialImageData;
+    private String interestingFactData;
 }

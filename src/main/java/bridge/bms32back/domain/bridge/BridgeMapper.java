@@ -44,7 +44,7 @@ public interface BridgeMapper {
     @Mapping(source = "location.longitude", target = "locationLongitude")
     @Mapping(source = "location.latitude", target = "locationLatitude")
     @Mapping(source = "conditionIndex", target = "conditionIndex")
-    BridgeDetailsDto toBridgeDetailedDto(Bridge bridge);
+    BridgeDetailsDto toBridgeDetailsDto(Bridge bridge);
 
     @Mapping(source = "bridgeNumber", target = "number")
     @Mapping(source = "bridgeName", target = "name")

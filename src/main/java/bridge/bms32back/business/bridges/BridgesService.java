@@ -9,6 +9,7 @@ import bridge.bms32back.domain.bridge.BridgeService;
 import bridge.bms32back.domain.county.County;
 import bridge.bms32back.domain.county.CountyService;
 import bridge.bms32back.domain.image.Image;
+import bridge.bms32back.domain.image.ImageRepository;
 import bridge.bms32back.domain.image.ImageService;
 import bridge.bms32back.domain.location.Location;
 import bridge.bms32back.domain.location.LocationMapper;
@@ -45,6 +46,11 @@ public class BridgesService {
     private LocationMapper locationMapper;
     @Resource
     private CountyService countyService;
+    private final ImageRepository imageRepository;
+
+    public BridgesService(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
 
     public List<BridgeOverviewDto> findAllBridgesOverview() {
@@ -102,7 +108,8 @@ public class BridgesService {
 
     public BridgeDetailsDto getBridgeBy(Integer bridgeId) {
         Bridge bridge = bridgeService.getBridgeBy(bridgeId);
-        BridgeDetailsDto bridgeDetailsDto = bridgeMapper.toBridgeDetailedDto(bridge);
+        BridgeDetailsDto bridgeDetailsDto = bridgeMapper.toBridgeDetailsDto(bridge);
+        imageRepository.getImageBy(bridgeDetailsDto.getBridgeId())
         return bridgeDetailsDto;
     }
 
